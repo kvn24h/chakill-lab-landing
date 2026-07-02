@@ -1,0 +1,45 @@
+/* Chakill Lab — Spacing, radii, shadows, layout */
+:root {
+  /* Spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4 */
+  --space-2: 0.5rem;   /* 8 */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+
+  /* Radii — the brand leans on soft, rounded "pill" geometry */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows — soft, cool-tinted, low contrast (craft / tactile feel) */
+  --shadow-xs: 0 1px 2px rgba(30, 54, 83, 0.06);
+  --shadow-sm: 0 2px 8px rgba(30, 54, 83, 0.08);
+  --shadow-md: 0 8px 24px rgba(30, 54, 83, 0.10);
+  --shadow-lg: 0 18px 48px rgba(30, 54, 83, 0.14);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* Focus */
+  --ring-width: 3px;
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 880px;
+  --container-lg: 1120px;
+  --container-xl: 1280px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast: 120ms; /* @kind other */
+  --dur-base: 220ms; /* @kind other */
+  --dur-slow: 380ms; /* @kind other */
+}

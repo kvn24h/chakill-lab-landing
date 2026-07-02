@@ -1,0 +1,54 @@
+/* Chakill Lab — Typography tokens
+   Hierarchy (from Tipografía.pdf):
+   Titular = Archivo Black · Acento = Newsreader itálica · Bajada = Oswald
+   · Cuerpo = Space Grotesk · Códigos = Space Mono */
+:root {
+  /* Families */
+  --font-display: 'Archivo Black', system-ui, sans-serif; /* titulares, pesado y ancho */
+  --font-label:   'Oswald', system-ui, sans-serif;        /* condensada — etiquetas / badges / bajada */
+  --font-body:    'Space Grotesk', system-ui, sans-serif; /* cuerpo, subtítulos, logo, web */
+  --font-ui:      'Space Grotesk', system-ui, sans-serif; /* botones, inputs, navegación */
+  --font-accent:  'Newsreader', Georgia, serif;           /* itálica — acentos */
+  --font-mono:    'Space Mono', ui-monospace, monospace;  /* códigos, SKU */
+
+  /* Weights (Archivo Black is single-weight 400; weights apply to the others) */
+  --fw-regular: 400;  /* @kind font */
+  --fw-medium: 500;   /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700;     /* @kind font */
+  --fw-black: 700;    /* @kind font */
+
+  /* Type scale (1.250 major third, 16px base) */
+  --text-xs:   0.75rem;  /* 12 */
+  --text-sm:   0.875rem; /* 14 */
+  --text-base: 1rem;     /* 16 */
+  --text-lg:   1.25rem;  /* 20 */
+  --text-xl:   1.563rem; /* 25 */
+  --text-2xl:  1.953rem; /* 31 */
+  --text-3xl:  2.441rem; /* 39 */
+  --text-4xl:  3.052rem; /* 49 */
+  --text-5xl:  3.815rem; /* 61 */
+
+  /* Line heights */
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter spacing */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-caps: 0.14em;  /* eyebrow / label uppercase (Oswald) */
+
+  /* Semantic roles */
+  --display-family: var(--font-display); /* Archivo Black titular */
+  --display-weight: var(--fw-regular);
+  --heading-family: var(--font-label);   /* Oswald bajada / subhead */
+  --heading-weight: var(--fw-semibold);
+  --body-family: var(--font-body);        /* Space Grotesk */
+  --label-family: var(--font-label);      /* Oswald */
+  --label-weight: var(--fw-semibold);
+  --accent-family: var(--font-accent);    /* Newsreader italic */
+  --code-family: var(--font-mono);        /* Space Mono */
+}

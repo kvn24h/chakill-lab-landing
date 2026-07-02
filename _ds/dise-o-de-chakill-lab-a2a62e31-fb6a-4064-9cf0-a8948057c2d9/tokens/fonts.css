@@ -1,0 +1,8 @@
+/* Chakill Lab — Webfonts (official brand type system, from Tipografía.pdf)
+   Archivo Black — Display / titulares (pesado y ancho)
+   Oswald       — Condensada / etiquetas / badges
+   Space Grotesk— Cuerpo, subtítulos y el LOGOTIPO
+   Newsreader   — Itálica / acentos
+   Space Mono   — Códigos / SKU
+   All available on Google Fonts — these are the real brand families. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500;1,6..72,600&family=Space+Mono:wght@400;700&display=swap');

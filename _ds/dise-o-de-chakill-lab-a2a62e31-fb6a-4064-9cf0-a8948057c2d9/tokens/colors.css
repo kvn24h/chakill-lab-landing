@@ -1,0 +1,51 @@
+/* Chakill Lab — Color tokens */
+:root {
+  /* ---- Brand base palette ---- */
+  --azul-chakill: #6CA0CF; /* primary accent / "Lab" pill */
+  --azul-medio:   #5E7CA6; /* mid blue */
+  --azul-tinta:   #1E3653; /* ink blue — wordmark, text */
+  --azul-polvo:   #BFD2E6; /* powder blue — soft surfaces */
+  --crema-hueso:  #ECE6D6; /* bone cream — warm canvas */
+  --arena:        #D9C0A0; /* sand — warm accent */
+
+  /* ---- Extended neutrals (derived) ---- */
+  --white:   #FFFFFF;
+  --off-white: #FBFAF5; /* slightly warm white */
+  --ink-900: #14273E;
+  --ink-800: #1E3653; /* = azul-tinta */
+  --ink-600: #34506F;
+  --slate-500: #5E7CA6; /* = azul-medio */
+  --slate-300: #9DB4CE;
+  --line-200: #DCE4EE;
+  --line-100: #E9E4D6;
+
+  /* ---- Semantic aliases ---- */
+  --brand:            var(--azul-chakill);
+  --brand-strong:     var(--azul-medio);
+  --brand-ink:        var(--azul-tinta);
+
+  --bg-page:          var(--crema-hueso);
+  --bg-page-warm:     var(--off-white);
+  --surface-card:     var(--white);
+  --surface-soft:     var(--azul-polvo);
+  --surface-sand:     var(--arena);
+  --surface-ink:      var(--azul-tinta);
+
+  --text-strong:      var(--azul-tinta);
+  --text-body:        var(--ink-600);
+  --text-muted:       var(--slate-500);
+  --text-on-brand:    var(--white);
+  --text-on-ink:      var(--crema-hueso);
+
+  --border-subtle:    var(--line-200);
+  --border-warm:      var(--line-100);
+  --border-strong:    var(--azul-tinta);
+
+  --focus-ring:       var(--azul-chakill);
+
+  /* ---- Status (kept within brand temperature) ---- */
+  --success: #4E8C6A;
+  --warning: #C79A52;
+  --danger:  #B5524B;
+  --info:    var(--azul-medio);
+}

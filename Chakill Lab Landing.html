@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chakill Lab — Catálogo</title>
+<link rel="icon" href="assets/logos/isotipo-appicon.png">
+
+<link rel="stylesheet" href="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/tokens/colors.css">
+<link rel="stylesheet" href="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/tokens/typography.css">
+<link rel="stylesheet" href="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/styles.css">
+
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--crema-hueso); color: var(--text-strong);
+    font-family: var(--font-body); -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { display: block; }
+  image-slot { border-radius: var(--radius-lg); }
+  @media (max-width: 860px) {
+    #top > div, [id="catalogo"] > div { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="_ds/dise-o-de-chakill-lab-a2a62e31-fb6a-4064-9cf0-a8948057c2d9/_ds_bundle.js"></script>
+<script src="image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="landing-data.jsx"></script>
+<script type="text/babel" src="landing-sections-a.jsx"></script>
+<script type="text/babel" src="landing-sections-b.jsx"></script>
+
+<script type="text/babel">
+  const { Marquee } = window.ChakillLabDesignSystem_a2a62e;
+
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#6CA0CF",
+    "displayFont": "Archivo Black",
+    "graphics": "full",
+    "heroTitle": "chakill lab ",
+    "heroBody": "Diseño propio, impreso en 3D y personalizado en el color que tú quieras. Cada pieza es única y hecha a pedido."
+  }/*EDITMODE-END*/;
+
+  const FONT_STACKS = {
+    "Archivo Black": "'Archivo Black', system-ui, sans-serif",
+    "Oswald": "'Oswald', system-ui, sans-serif",
+    "Space Grotesk": "'Space Grotesk', system-ui, sans-serif",
+    "Newsreader": "'Newsreader', Georgia, serif",
+  };
+
+  // Deriva un azul medio (hover) más oscuro a partir del acento elegido.
+  function darken(hex, amt = 0.16) {
+    const n = parseInt(hex.slice(1), 16);
+    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    r = Math.round(r * (1 - amt)); g = Math.round(g * (1 - amt)); b = Math.round(b * (1 - amt));
+    return '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');
+  }
+
+  function App() {
+    const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+
+    const gfx = {
+      showStickers: t.graphics !== 'minima',
+      showMarquee: t.graphics !== 'minima',
+      extra: t.graphics === 'full',
+    };
+    const copy = {
+      eyebrow: 'Colección · Hecho en 3D',
+      title: t.heroTitle,
+      accent: 'piezas para tu depa chico',
+      body: t.heroBody,
+    };
+
+    const rootVars = {
+      '--brand': t.accent,
+      '--azul-chakill': t.accent,
+      '--brand-strong': darken(t.accent),
+      '--focus-ring': t.accent,
+      '--font-display': FONT_STACKS[t.displayFont] || FONT_STACKS['Archivo Black'],
+    };
+
+    return (
+      <div style={rootVars}>
+        <window.CLHeader />
+        <window.CLHero copy={copy} gfx={gfx} />
+        {gfx.showMarquee && <Marquee text="chakill Lab" sep="✕" tone="ink" speed={26} />}
+        <window.CLCatalog gfx={gfx} />
+        {gfx.extra && <Marquee text="New in" sep="✕" tone="brand" speed={20} />}
+        <window.CLGallery gfx={gfx} />
+        <window.CLHowItWorks />
+        <window.CLColor />
+        <window.CLFooter />
+
+        <window.TweaksPanel>
+          <window.TweakSection label="Titular" />
+          <window.TweakSelect label="Tipografía"
+            value={t.displayFont}
+            options={["Archivo Black", "Oswald", "Space Grotesk", "Newsreader"]}
+            onChange={(v) => setTweak('displayFont', v)} />
+          <window.TweakText label="Título del hero"
+            value={t.heroTitle} onChange={(v) => setTweak('heroTitle', v)} />
+          <window.TweakText label="Bajada del hero"
+            value={t.heroBody} onChange={(v) => setTweak('heroBody', v)} />
+
+          <window.TweakSection label="Color de acento" />
+          <window.TweakColor label="Acento"
+            value={t.accent}
+            options={["#6CA0CF", "#5E7CA6", "#1E3653", "#D9C0A0"]}
+            onChange={(v) => setTweak('accent', v)} />
+
+          <window.TweakSection label="Sistema gráfico" />
+          <window.TweakRadio label="Intensidad"
+            value={t.graphics}
+            options={["minima", "media", "full"]}
+            onChange={(v) => setTweak('graphics', v)} />
+        </window.TweaksPanel>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#1E3653"/>
+    <text x="50" y="62" font-family="Arial Black, sans-serif" font-size="44" font-weight="900" fill="#6CA0CF" text-anchor="middle">C.</text>
+  </svg>
+</template>
+</body>
+</html>
