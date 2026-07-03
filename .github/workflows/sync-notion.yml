@@ -38,4 +38,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add catalog.json
           git diff --staged --quiet || git commit -m "sync: actualizar catalog.json desde Notion [skip ci]"
+                  git pull --rebase origin main
           git push
