@@ -21,25 +21,17 @@ jobs:
             -H "Notion-Version: 2022-06-28" \
             -H "Content-Type: application/json" \
             -d '{"filter":{"property":"Activo","checkbox":{"equals":true}}}' \
-          | python3 << 'PYEOF'
-import json, sys
-data = json.load(sys.stdin)
-products = []
-for r in data.get('results', []):
-    p = r['properties']
-    products.append({
-        'id': r['id'],
-        'nombre': p.get('Nombre', {}).get('title', [{}])[0].get('plain_text', '') if p.get('Nombre', {}).get('title') else '',
-        'precio': p.get('Precio', {}).get('number', 0),
-        'color': p.get('Color', {}).get('rich_text', [{}])[0].get('plain_text', '') if p.get('Color', {}).get('rich_text') else '',
-        'etiqueta': (p.get('Etiqueta', {}).get('select') or {}).get('name', ''),
-        'sku': p.get('SKU', {}).get('rich_text', [{}])[0].get('plain_text', '') if p.get('SKU', {}).get('rich_text') else '',
-        'descripcion': p.get('Descripcion', {}).get('rich_text', [{}])[0].get('plain_text', '') if p.get('Descripcion', {}).get('rich_text') else ''
-    })
-with open('catalog.json', 'w') as f:
-    json.dump(products, f, indent=2, ensure_ascii=False)
-print('Productos sincronizados:', len(products))
-PYEOF
+          | jq '[.results[] | {
+              id: .id,
+              nombre: (.properties.Nombre.title[0].plain_text // ""),
+              precio: (.properties.Precio.number // 0),
+              color: (.properties.Color.rich_text[0].plain_text // ""),
+              etiqueta: (.properties.Etiqueta.select.name // ""),
+              sku: (.properties.SKU.rich_text[0].plain_text // ""),
+              descripcion: (.properties.Descripcion.rich_text[0].plain_text // ""),
+              activo: (.properties.Activo.checkbox // false)
+            }]' > catalog.json
+          echo "Productos sincronizados: $(jq length catalog.json)"
       - name: Commit catalog.json
         run: |
           git config user.name "github-actions[bot]"
